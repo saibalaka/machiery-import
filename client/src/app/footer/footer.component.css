@@ -1,0 +1,52 @@
+.row{
+    background-color: #e1e8ed;
+    padding:30px 10px;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 1fr;
+}
+@media screen and (min-width: 360px) {
+    .row {
+      grid-template-columns:1fr;
+    }
+}
+@media screen and (min-width: 480px) {
+    .row {
+      grid-template-columns: 1fr 1fr;
+    }
+}
+@media screen and (min-width: 720px) {
+    .row {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+@media screen and (min-width: 1024px) {
+    .row {
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    }
+}
+a{
+    text-decoration: none;
+    color: #6a6a6a;
+}
+ul{
+    list-style-type: none;
+    background-color: #e1e8ed;
+    padding-left: 0;
+    font-size: 12px;
+    line-height: 14px;
+}
+li{
+    padding: 8px;
+}
+.findus-icon{
+    margin: 5px;
+}
+
+.copyright{
+    background-color: #33424f;
+    color: #fff;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+}
