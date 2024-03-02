@@ -12,6 +12,8 @@ import { UserComponent } from './user/user.component';
 import { ProductsComponent } from './products/products.component';
 import { QuotationComponent } from './quotation/quotation.component';
 import { RequestsComponent } from './requests/requests.component';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms'
+import { provideHttpClient, withFetch } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,9 +30,11 @@ import { RequestsComponent } from './requests/requests.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [provideHttpClient(withFetch())],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

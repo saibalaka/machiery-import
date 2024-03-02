@@ -1,4 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { UserService } from '../services/user.service';
+import { FormBuilder,Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { User } from '../models/user';
+
 
 @Component({
   selector: 'app-register',
@@ -6,5 +11,51 @@ import { Component } from '@angular/core';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
+
+  userServiceObj = inject(UserService);
+  routerObj = inject(Router)
+  fb:FormBuilder = inject(FormBuilder)
+
+  user = this.fb.group({
+    username:['',[Validators.required,Validators.pattern('[a-zA-Z ]*')]],
+    password:['',[Validators.required,Validators.pattern('[a-zA-Z ]*'),Validators.minLength(6)]],
+    email:['',[Validators.required,Validators.email]],
+    companyname:['',[Validators.required,Validators.pattern('[a-zA-Z ]*')]],
+    role:[''],
+    requests:[[]]
+  })
+
+  get username(){
+    return this.user.get('username');
+  }
+  get password(){
+    return this.user.get('password');
+  }
+  get email(){
+    return this.user.get('email');
+  }
+  get role(){
+    return this.user.get('role');
+  }
+  get companyname(){
+    return this.user.get('companyname');
+  }
+
+  onSubmitUser(){
+    this.userServiceObj.role.set(this.user.value.role)
+    let newUser = new User(this.user.value.username,this.user.value.password,this.user.value.email,this.user.value.companyname,this.user.value.requests,)
+    this.userServiceObj.createUser(newUser,this.user.value.role).subscribe({
+      next:res=>{
+        console.log(res)
+      },
+      error:err=>{
+        console.log("error while registering user ",err)
+      }
+    })
+  }
+
+  haveAccount(){
+    this.routerObj.navigate(['login'])
+  }
 
 }

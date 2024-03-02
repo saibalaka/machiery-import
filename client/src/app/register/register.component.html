@@ -1,1 +1,54 @@
-<p>register works!</p>
+<p class="text-center h1 mt-5">Create Account</p>
+
+<div class="container" style="width:40%;">
+    <form class="form-group" [formGroup]="user" (ngSubmit)="onSubmitUser()">
+        <div class="mb-2 form-check">
+            <input type="radio" formControlName="role" id="importer" value="importers" class="form-check-input">
+            <label for="importer" class="form-check-label">Importer</label>
+        </div>
+        <div class="mb-2 form-check">
+            <input type="radio" formControlName="role" id="exporter" value="exporters" class="form-check-input">
+            <label for="exporter" class="form-check-label">Exporter</label>
+            <div *ngIf="role.invalid&&(role.dirty||role.touched)">
+                <small class="text-danger" *ngIf="role.errors?.['required']">You should select any one of them</small>
+            </div>
+        </div>
+        <div class="mb-2">
+            <label for="username" class="form-label">User Name</label>
+            <input type="text" formControlName="username" id="username" class="form-control">
+            <div *ngIf="username.invalid&&(username.dirty||username.touched)">
+                <small class="text-danger" *ngIf="username.errors?.['required']">Username is required</small>
+                <small class="text-danger" *ngIf="username.errors?.['pattern']">Only letters and spaces are allowed</small>
+            </div>
+        </div>
+        <div class="mb-2">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" formControlName="password" id="password" class="form-control">
+            <div *ngIf="password.invalid&&(password.dirty||password.touched)">
+                <small class="text-danger" *ngIf="password.errors?.['required']">Password is required</small>
+                <small class="text-danger" *ngIf="password.errors?.['minlength']">Atleast 6 characters are reruired</small>
+                <small class="text-danger" *ngIf="password.errors?.['pattern']">Only letters and spaces are allowed</small>
+            </div>
+        </div>
+        <div class="mb-2">
+            <label for="email" class="form-label">Email Id</label>
+            <input type="email" formControlName="email" id="email" class="form-control">
+            <div *ngIf="email.invalid&&(email.dirty||email.touched)">
+                <small class="text-danger" *ngIf="email.errors?.['required']">Email is required</small>
+                <small class="text-danger" *ngIf="email.errors?.['email']">Invalid email Id</small>
+            </div>
+        </div>
+        <div class="mb-2">
+            <label for="companyname" class="form-label">Company Name</label>
+            <input type="text" formControlName="companyname" id="companyname" class="form-control">
+            <div *ngIf="companyname.invalid&&(companyname.dirty||companyname.touched)">
+                <small class="text-danger" *ngIf="companyname.errors?.['required']">Company Name is required</small>
+                <small class="text-danger" *ngIf="username.errors?.['pattern']">Only letters and spaces are allowed</small>
+            </div>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn px-5" [disabled]="!user.valid">Submit</button>
+        </div>
+    </form>
+</div>  
+<p class="text-center">Already have an account?<a routerLink="login" (click)="haveAccount()">Login now</a></p>  
