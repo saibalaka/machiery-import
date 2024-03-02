@@ -19,8 +19,8 @@ const buyerSchema = new mongoose.Schema({
         required:[true,'username is required but missing'],
         minLength:[3,'minimumlength should be 3 letters']
     },
-    email:String,
     password:String,
+    email:String,
     companyname:String,
     requests:[]
 })
@@ -31,7 +31,7 @@ const Buyer = mongoose.model('buyer',buyerSchema)
 
 
 //seller schema
-const sellerShema = new mongoose.Schema({
+const sellerSchema = new mongoose.Schema({
     username:{
         type:String,
         required:[true,'username is required but missing'],
@@ -39,12 +39,12 @@ const sellerShema = new mongoose.Schema({
     },
     password:String,
     email:String,
-    company:String,
+    companyname:String,
     requests:[]
 })
 
 //create sellerSchema model
-const Seller = new mongoose.model('seller',sellerShema)
+const Seller = mongoose.model('seller',sellerSchema)
 
 //importer schema
 const importerSchema = new mongoose.Schema({
@@ -62,7 +62,7 @@ const importerSchema = new mongoose.Schema({
 })
 
 //create importer model
-const Importer = new mongoose.model('importer',importerSchema)
+const Importer = mongoose.model('importer',importerSchema)
 
 //export user model
 module.exports = {Buyer,Seller,Importer}

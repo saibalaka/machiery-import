@@ -1,4 +1,4 @@
-post http://localhost:4000/buyer-api/buyer
+post http://localhost:4000/seller-api/seller
 Content-Type: application/json
 
 {
@@ -7,4 +7,14 @@ Content-Type: application/json
     "emailId":"ss",
     "companyname":"ddd",
     "requsts":[]
+}
+
+//user login 
+###
+post http://localhost:4000/seller-api/seller-login
+Content-Type: application/json
+
+{
+    "username":"Sai",
+    "password":"ssssss"
 }

@@ -20,5 +20,34 @@ const creatNewSeller = async(req,res)=>{
     }
 }
 
+//to check and login the user
+const sellerLogin = async(req,res)=>{
+    //get the user credentials 
+    let userCred = req.body
+    //check wheather the user exist or not
+    let userOfDB = await Seller.findOne({username:userCred.username})
+    //if user not there
+    if(userOfDB===null){
+        res.status(200).send({message:"Invalid user"})
+    }
+    //if user present
+    else{
+        //compare passwords
+        let result = await bcryptjs.compare(userCred.password,userOfDB.password)
+        //if passwords matched
+        if(result){
+            //create a signed token
+            let signedToken = jwt.sign({username:userOfDB.username},process.env.SECRET_KEY,{expiresIn:160})
+            //send res
+            res.status(200).send({message:"Login success",token:signedToken,payload:userOfDB})
+            console.log("user is ",userOfDB)
+        }
+        //else passwords not matched
+        else{
+            res.status(200).send({message:"Invalid password"})
+        }
+    }
+}
 
-module.exports = {creatNewSeller}
+
+module.exports = {creatNewSeller,sellerLogin}

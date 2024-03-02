@@ -1,17 +1,14 @@
 <p class="text-center h1 mt-5">Create Account</p>
-
+<p class="text-center text-danger p-3">{{message}}</p>
 <div class="container" style="width:40%;">
     <form class="form-group" [formGroup]="user" (ngSubmit)="onSubmitUser()">
         <div class="mb-2 form-check">
-            <input type="radio" formControlName="role" id="importer" value="importers" class="form-check-input">
-            <label for="importer" class="form-check-label">Importer</label>
+            <input type="radio" formControlName="role" id="buyer" value="buyer" class="form-check-input">
+            <label for="buyer" class="form-check-label">Buyer</label>
         </div>
         <div class="mb-2 form-check">
-            <input type="radio" formControlName="role" id="exporter" value="exporters" class="form-check-input">
-            <label for="exporter" class="form-check-label">Exporter</label>
-            <div *ngIf="role.invalid&&(role.dirty||role.touched)">
-                <small class="text-danger" *ngIf="role.errors?.['required']">You should select any one of them</small>
-            </div>
+            <input type="radio" formControlName="role" id="seller" value="seller" class="form-check-input">
+            <label for="seller" class="form-check-label">Seller</label>
         </div>
         <div class="mb-2">
             <label for="username" class="form-label">User Name</label>

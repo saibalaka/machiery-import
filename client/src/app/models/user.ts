@@ -1,3 +1,4 @@
+//user model for registering
 export class User{
     constructor(
         public username:string,
@@ -8,6 +9,15 @@ export class User{
     ){}
 }
 
+//user modlel for login
+export class Userlog{
+    constructor(
+        public username:string,
+        public password:string
+    ){}
+}
+
+//importer model
 export class Importer{
     constructor(
         public companyName:string,

@@ -1,5 +1,39 @@
-<p>login works!</p>
+<p class="h1 text-center mt-5">Login</p>
 
-<h1>{{role}}</h1>
+<!-- To display message if user already exists -->
+<p class="text-center text-danger p-3">{{message}}</p>
 
-<h1>hello role</h1>
+<!-- Form for filling user details -->
+<div class="container" style="width: 40%;">
+<form class="form-group" [formGroup]="userCred" (ngSubmit)="userLogin()">
+    <div class="mb-2 form-check">
+        <input type="radio" formControlName="role" id="buyer" value="buyer" class="form-check-input">
+        <label for="buyer" class="form-check-label">Buyer</label>
+    </div>
+    <div class="mb-2 form-check">
+        <input type="radio" formControlName="role" id="seller" value="seller" class="form-check-input">
+        <label for="seller" class="form-check-label">Seller</label>
+    </div>
+    <div>
+        <label for="username" class="form-label">User Name</label>
+        <input type="text" formControlName="username" id="username" class="form-control" placeholder="Username" required>
+        <div *ngIf="username.invalid&&(username.dirty||username.touched)">
+            <small class="text-danger" *ngIf="username.errors?.['required']">Username is required</small>
+            <small class="text-danger" *ngIf="username.errors?.['pattern']">Only letters and sapces are allowed</small>
+        </div>
+    </div>
+    <div>
+        <label for="password" class="form-label">Password</label>
+        <input type="password" formControlName="password" id="password" class="form-control" placeholder="Password" required>
+        <div *ngIf="password.invalid&&(password.dirty||password.touched)">
+            <small class="text-danger" *ngIf="password.errors?.['required']">Password is required</small>
+            <small class="text-danger" *ngIf="password.errors?.['minlength']">Atleast 6 characters are required</small>
+            <small class="text-danger" *ngIf="password.errors?.['pattern']">Only letters and spaces are allowed</small>
+        </div>
+    </div>
+    <div class="text-center">
+        <button type="submit" class="btn px-5" [disabled]="!userCred.valid">Login</button>
+    </div>
+</form>
+</div>
+<p class="text-center">Need an account?<a routerLink="signup" (click)="createAccount()">Sign Up</a></p>

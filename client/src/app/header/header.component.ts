@@ -1,4 +1,4 @@
-import { Component, effect, inject } from '@angular/core';
+import { Component, OnInit, effect, inject } from '@angular/core';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -6,6 +6,17 @@ import { UserService } from '../services/user.service';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
+
+  userServiceObj = inject(UserService)
+
+  logout(){
+    localStorage.removeItem('token')
+    localStorage.removeItem('user')
+  }
+
+  ngOnInit(): void {
+    setInterval(()=>this.userServiceObj.setLoginStatus(),1000)
+  }
   
 }

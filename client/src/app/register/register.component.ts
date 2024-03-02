@@ -15,13 +15,14 @@ export class RegisterComponent {
   userServiceObj = inject(UserService);
   routerObj = inject(Router)
   fb:FormBuilder = inject(FormBuilder)
+  message:string = ''
 
   user = this.fb.group({
     username:['',[Validators.required,Validators.pattern('[a-zA-Z ]*')]],
     password:['',[Validators.required,Validators.pattern('[a-zA-Z ]*'),Validators.minLength(6)]],
     email:['',[Validators.required,Validators.email]],
     companyname:['',[Validators.required,Validators.pattern('[a-zA-Z ]*')]],
-    role:[''],
+    role:['',Validators.required],
     requests:[[]]
   })
 
@@ -46,7 +47,11 @@ export class RegisterComponent {
     let newUser = new User(this.user.value.username,this.user.value.password,this.user.value.email,this.user.value.companyname,this.user.value.requests,)
     this.userServiceObj.createUser(newUser,this.user.value.role).subscribe({
       next:res=>{
-        console.log(res)
+        if(res.message==='user already exists'){
+          this.message = res.message;
+        }else{
+          this.routerObj.navigate(['login'])
+        }
       },
       error:err=>{
         console.log("error while registering user ",err)
