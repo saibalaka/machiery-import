@@ -9,7 +9,7 @@ import { Importer, User, Userlog } from '../models/user';
 export class UserService {
 
   httpClientObj = inject(HttpClient);
-  role = signal('')
+  role = signal('buyer')
   userLoginStatus = signal(false)
   logedUser = signal({})
 

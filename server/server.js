@@ -14,11 +14,13 @@ app.use(exp.json())
 const buyerApp = require('./APIs/buyer-api')
 const sellerApp = require('./APIs/seller-api')
 const importerApp = require('./APIs/importer-api')
+const productApp = require('./APIs/product-api')
 
 //forward req to that particular api
 app.use('/buyer-api',buyerApp)
 app.use('/seller-api',sellerApp)
 app.use('/importer-api',importerApp)
+app.use('/product-api',productApp)
 
 //to load the front end url
 app.use((req,res,next)=>{

@@ -30,6 +30,7 @@ export class LoginComponent {
           let user = JSON.stringify(res.payload)
           localStorage.setItem('token',res.token)
           localStorage.setItem('user',user)
+          this.userServiceObj.role.set(this.userCred.value.role)
           this.routerObj.navigate(['user'])
         }else{
           this.message=res.message

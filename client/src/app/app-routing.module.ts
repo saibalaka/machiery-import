@@ -35,7 +35,12 @@ const routes: Routes = [
     path:'requests',
     component:RequestsComponent,
     canActivate:[routerGuard]
-  }
+  },
+  {
+    path:'',
+    redirectTo:'home',
+    pathMatch:'full'
+   },
 ];
 
 @NgModule({

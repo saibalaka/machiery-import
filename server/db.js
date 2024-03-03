@@ -64,5 +64,19 @@ const importerSchema = new mongoose.Schema({
 //create importer model
 const Importer = mongoose.model('importer',importerSchema)
 
+//products schema
+const productSchema = new mongoose.Schema({
+    title:String,
+    image:String,
+    discription:String,
+    cost:Number,
+    madein:String,
+    manufacturer:String,
+    sellername:String
+})
+
+//create product model
+const Product = mongoose.model('product',productSchema)
+
 //export user model
-module.exports = {Buyer,Seller,Importer}
+module.exports = {Buyer,Seller,Importer,Product}
