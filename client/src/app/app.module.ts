@@ -14,6 +14,8 @@ import { QuotationComponent } from './quotation/quotation.component';
 import { RequestsComponent } from './requests/requests.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms'
 import { provideHttpClient, withFetch } from '@angular/common/http';
+import { ViewComponent } from './view/view.component';
+import { SellerProductsComponent } from './seller-products/seller-products.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
     UserComponent,
     ProductsComponent,
     QuotationComponent,
-    RequestsComponent
+    RequestsComponent,
+    ViewComponent,
+    SellerProductsComponent
   ],
   imports: [
     BrowserModule,

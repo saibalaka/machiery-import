@@ -16,7 +16,14 @@ const getProductsBySellername = async(req,res)=>{
 //to create new product
 const createProduct = async(req,res)=>{
     let product = req.body
-    res.status(200).send({message:"created a new product",payload:product})
+    product.image=req.file.url;
+    let existingProduct = await Product.findOne({$and:[{title:product.title},{sellername:product.sellername}]})
+    if(existingProduct!==null){
+        res.status(200).send({message:"product already exists please update the existing product"})
+    }else{
+        let productDoc = await Product.create(product)
+        res.status(200).send({message:"created a new product",payload:productDoc})
+    }
 }
 
 //to update the product

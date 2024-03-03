@@ -6,6 +6,7 @@ const { getProducts,
         createProduct,
         updateProduct,
         removeProduct} = require('../controller/product-controller')
+const verifyingDuplicateProduct = require('../middlewares/verifyingDuplicateProduct')
 require('dotenv').config()
 const multer = require('multer')
 const cloudinary = require('cloudinary').v2

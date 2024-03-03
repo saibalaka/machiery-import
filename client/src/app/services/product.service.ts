@@ -5,7 +5,7 @@ import { Observable, map } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class MachineryService {
+export class ProductService {
 
     httpClientObj = inject(HttpClient)
 
