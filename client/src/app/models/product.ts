@@ -1,4 +1,4 @@
-export class Machinery{
+export class Product{
     constructor (
         public title:string,
         public image:string,

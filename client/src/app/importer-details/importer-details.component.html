@@ -1,0 +1,43 @@
+<div class="container">
+    <form class="form-group" [formGroup]="importerDetails" (ngSubmit)="onDetailsFormSubmit()">
+        <h2>Importer Details</h2>
+        <div>
+            <label for="companyName" class="form-label">Company Name:</label>
+            <input type="text" formControlName="companyName" id="companyName" class="form-control">
+        </div>
+        <div>
+            <label for="typeOfBuss" class="form-label">Type Of Business:</label>
+            <input type="text" formControlName="typeOfBuss" id="typeOfBuss" class="form-control">
+        </div>
+        <div>
+            <label for="name" class="form-label">Name:</label>
+            <input type="text" formControlName="name" id="name" class="form-control">
+        </div>
+        <div>
+            <label for="emailId" class="form-label">Email Id:</label>
+            <input type="text" formControlName="emailId" id="emailId" class="form-control">
+        </div>
+        <div>
+            <label for="phone" class="form-label">Phone Number:</label>
+            <input type="text" formControlName="phone" id="phone" class="form-control">
+        </div>
+        <div formGroupName="address">
+            <h2>Address</h2>
+            <div>
+                <label for="city" class="form-label">City:</label>
+                <input type="text" formControlName="city" id="city" class="form-control">
+            </div>
+            <div>
+                <label for="country" class="form-label">Country:</label>
+                <input type="text" formControlName="country" id="country" class="form-control">
+            </div>
+            <div>
+                <label for="pinCode" class="form-label">Pin Code:</label>
+                <input type="text" formControlName="pinCode" id="pinCode" class="form-control">
+            </div>
+        </div>
+        <div>
+            <button type="submit" class="btn px-3" [disabled]="!importerDetails.valid">Submit</button>
+        </div>
+    </form>
+</div>

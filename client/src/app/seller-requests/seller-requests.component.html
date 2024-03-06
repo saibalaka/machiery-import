@@ -1,0 +1,33 @@
+
+
+<table class="table">
+    <thead>
+      <tr>
+        <th>Product Name</th>
+        <th>Importer Name</th>
+        <th>Importer Companyname</th>
+        <th>Quantity</th>
+        <th>Status</th>
+        <th>Remove/Reject</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(request of sellerRequests;track request;let index=$index){
+
+        <tr>
+          <td>{{productDetails[index]?.title}}</td>
+          <td>{{importerDetails[index]?.name}}</td>
+          <td>{{importerDetails[index]?.companyName}}</td>
+          <td>{{request?.qty}}</td>
+          @if(request.status==='pending'){
+          <td><button type="submit" class="btn btn-success" (click)="sendResponse(index,'Accepted',request?.buyerId,request?.sellerId)">Send Quote</button></td>
+          <td><button type="submit" class="btn btn-danger" (click)="sendResponse(index,'Rejected',request?.buyerId,request?.sellerId)">Reject</button></td>
+          }
+          @else {
+            <td>{{request.status}}</td>
+            <td><button type="submit" class="btn btn-danger" (click)="remove(index,request?.sellerId)">Remove</button></td>
+          }
+        </tr>
+      }
+    </tbody>
+  </table>

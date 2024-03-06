@@ -1,1 +1,5 @@
-<p>user works!</p>
+@if(role==='buyer'){
+    <app-products/>
+}@else{
+    <app-seller-products/>
+}

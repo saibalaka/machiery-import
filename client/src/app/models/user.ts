@@ -1,11 +1,12 @@
 //user model for registering
 export class User{
     constructor(
+        public _id:string,
         public username:string,
         public password:string,
         public email:string,
         public companyname:string,
-        public requests:[]
+        public requests:[{}]
     ){}
 }
 
@@ -29,7 +30,7 @@ export class Importer{
         public address:{
             city:string,
             country:string,
-            pinCode:number
+            pinCode:string
         },
     ){}
 }

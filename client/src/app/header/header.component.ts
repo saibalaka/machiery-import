@@ -10,12 +10,14 @@ export class HeaderComponent implements OnInit {
 
   userServiceObj = inject(UserService)
   loginStatus = this.userServiceObj.userLoginStatus()
+  role = this.userServiceObj.role()
 
 
   //constructor method
   constructor(){
     effect(()=>{
       this.loginStatus = this.userServiceObj.userLoginStatus()
+      this.role = this.userServiceObj.role()
     })
   }
 

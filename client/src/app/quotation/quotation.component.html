@@ -1,1 +1,90 @@
-<p>quotation works!</p>
+
+<div class="container border border-dark">
+    <div class="heading row">
+        <div class="col ">
+            <div class="d-inline-block">
+                <i class="fa-solid fa-truck-fast fa-5x"></i>
+            </div>
+            <div class="d-inline-block">
+                <p class="fw-bold fs-2">Large <br>Exporter</p>
+            </div>
+        </div>
+        <div class="col d-flex justify-content-end align-self-center">
+            <p class="fs-2">Quotation</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p><span class="fw-bold">Quotation by</span><br/>{{sellerDetails?.username}}<br/>{{sellerDetails?.companyname}}<br/>{{sellerDetails?.email}}</p>
+        </div>
+        <div class="col">
+            <p><span class="fw-bold">Quotation to</span><br/>{{buyerDetails?.username}}<br/>{{buyerDetails?.companyname}}<br/>{{buyerDetails?.email}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table border border-dark">
+            <thead>
+                <tr class="thead">
+                    <th class="border-dark border">Item/Item description</th>
+                    <th  class="border-dark border">Quantity</th>
+                    <th class="border-dark border">Rate</th>
+                    <th class="border-dark border">Insurance</th>
+                    <th class="border-dark border">Freight</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="border border-dark">{{productDetails?.discription}}</td>
+                    <td class="border border-dark">{{qutationData?.qty}}</td>
+                    <td class="border border-dark">{{productDetails?.cost| currency:"INR"}}</td>
+                    <!-- <td class="border border-dark">{{insurance | currency:"INR"}}</td>
+                    <td class="border border-dark">{{freight | currency:"INR"}}</td> -->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="mt-2">
+                <p class="fw-bold">Terms and Conditions</p>
+                <ol class="">
+                    <li><p>Please pay within 15 days from the date of invoice,overdue intrest &commat;14% will be changed on delayed payments.</p></li>
+                    <li>Please quote invoice number when remitting funds.</li>
+                </ol>
+            </div>
+            <div class="mt-2">
+                <p class="fw-bold">Additional Notes</p>
+                <p >It is a long established fact that a Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus vero fuga, fugiat veritatis similique asperiores consequatur saepe ipsam molestiae ea corrupti quo. Cumque dicta hic cum modi impedit, ducimus rem?</p>
+            </div>
+            <div class="mt-2">
+                <p class="fw-bold">Attachments</p>
+                <ol>
+                    <li>file1</li>
+                    <li>file2</li>
+                    <li>file3</li>
+                </ol>
+            </div>
+        </div>
+        <div class="col d-flex justify-content-end">
+            <table class=" dd d-inline-block">
+                <tr>
+                    <td class="border border-dark p-2">Sub Total</td>
+                    <!-- <td class="border border-dark p-2">{{rate | currency:"INR"}}</td> -->
+                </tr>
+                <tr>
+                    <td class="border border-dark p-2">Total</td>
+                    <!-- <td class="border border-dark p-2">{{cif | currency:"INR"}}</td> -->
+                </tr>
+                <tr>
+                    <td class="border border-dark p-2">Custom Duty</td>
+                    <!-- <td class="border border-dark p-2">{{customDuty | currency:"INR"}}</td> -->
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <button class="btn" (click)="goBackToRequests()">Go Back to Requests</button>
+        </div>
+    </div>
+</div>

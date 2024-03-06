@@ -1,0 +1,32 @@
+@if(!view){
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Product Name</th>
+        <th>Seller Name</th>
+        <th>Qantity</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(request of buyerRequests;track request;let index=$index){
+        <tr>
+          <td>{{productsData[index]?.title}}</td>
+          <td>{{sellersData[index]?.username}}</td>
+          <td>{{request?.qty}}</td>
+          @if(request.status==='pending'){
+            <td>Waiting for response</td>
+          }
+          @else {
+            <td><button class="btn btn-success" (click)="viewQutation(request)">View Quotation</button></td>
+            <td><button class="btn btn-danger" (click)="remove(index,request?.buyerId)">Remove</button></td>
+          }
+        </tr>
+      }
+    </tbody>
+  </table>
+}
+@else {
+  <app-quotation [qutationData]="qutationData" (goBack)="viewReq($event)"></app-quotation>
+}

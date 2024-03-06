@@ -48,5 +48,61 @@ const buyerLogin = async(req,res)=>{
     }
 }
 
+//req handler for getting requests array
+const buyerRequests = async(req,res)=>{
+    let requests = await Buyer.findOne({username:req.params.username})
+    res.send({message:"got the requests list ",payload:requests.requests})
+}
 
-module.exports = {creatNewBuyer,buyerLogin}
+//req handler for getting users details
+const buyerDetails = async(req,res)=>{
+    let user = await Buyer.findOne({username:req.params.username})
+    res.send({message:"got the buyer details ",payload:user})
+}
+
+//req handler for getting users details
+const buyerDetailsById = async(req,res)=>{
+    let user = await Buyer.findById(req.params.id)
+    res.send({message:"got the buyer details by id",payload:user})
+}
+
+//req handler for updating buyer requests
+const updateRequest = async(req,res)=>{
+    let buyer = await Buyer.findOne({_id:req.body.buyerId})
+    console.log("buyer is ",buyer)
+    if(buyer===null){
+        res.send({message:"buyer does not exist"})
+    }else{
+        buyer.requests.push(req.body)
+        console.log("buyer after update is ",buyer)
+        let updatedUser = await Buyer.findByIdAndUpdate(req.body.buyerId,buyer)
+        res.send({message:"req added",payload:updatedUser})
+    }
+}
+
+//req handler for deleteing buyer request
+const deleteRequest = async(req,res)=>{
+    let id = req.body.buyerId
+    let index = req.body.index
+    let buyer = await Buyer.findById(req.body.buyerId)
+    console.log("buyer details ",buyer)
+    console.log("index is ",req.body.index)
+    buyer.requests.splice(index,1)
+    console.log("after delete ",buyer)
+    let updated = await Buyer.findByIdAndUpdate(id,buyer)
+    res.send({message:"deleted the data ",updated})
+}
+
+//update status 
+const updateStatus = async(req,res)=>{
+    let id = req.body.buyerId
+    let index = req.body.index
+    let status = req.body.status
+    let buyer = await Buyer.findById(id)
+    buyer.requests[index].status = status;
+    let updated = await Buyer.findByIdAndUpdate(id,buyer)
+    res.send({message:"updated status is ",updated})
+}
+
+
+module.exports = {creatNewBuyer,buyerLogin,buyerRequests,buyerDetails,updateRequest,deleteRequest,updateStatus,buyerDetailsById}

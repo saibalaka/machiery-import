@@ -20,7 +20,40 @@ Content-Type: application/json
 }
 
 ###
-get http://localhost:4000/product-api/products/Sai
+get http://localhost:4000/product-api/products
 
 ###
-delete http://localhost:4000/product-api/product/id
+delete http://localhost:4000/product-api/product/65e430537940be683f5a5698
+
+###
+get http://localhost:4000/seller-api/seller/Sanju
+
+###
+put http://localhost:4000/buyer-api/buyer-requests
+Content-Type: application/json
+
+{
+    "productId":"65e68cb2f202e7f025e213b8",
+    "status":"pending",
+    "qty":10,
+    "buyerId":"65e68d36f202e7f025e213c1"
+}
+
+###
+put http://localhost:4000/buyer-api/buyer-delete-req
+Content-Type: application/json
+
+{
+    "index":0,
+    "buyerId":"65e68d36f202e7f025e213c1"
+}
+
+###
+put http://localhost:4000/buyer-api/buyer-status
+Content-Type: application/json
+
+{
+    "index":1,
+    "status":"Accept",
+    "buyerId":"65e68d36f202e7f025e213c1"
+}

@@ -18,19 +18,35 @@
             </li>
           }
           @else {
+            @if(role==='buyer'){
+              <li class="nav-item">
+                <a class="nav-link active" routerLink="home" routerLinkActive="active">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="products" routerLinkActive="active">Products</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="buyer-requests" routerLinkActive="active">Requests</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="login" routerLinkActive="active" (click)="logout()">Logout</a>
+              </li>
+          }
+          @else{
             <li class="nav-item">
               <a class="nav-link active" routerLink="home" routerLinkActive="active">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="products" routerLinkActive="active">Products</a>
+              <a class="nav-link" routerLink="seller-products" routerLinkActive="active">Products</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="requests" routerLinkActive="active">Requests</a>
+              <a class="nav-link" routerLink="seller-requests" routerLinkActive="active">Requests</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" routerLink="login" routerLinkActive="active" (click)="logout()">Logout</a>
             </li>
           }
+        }
         </ul>
       </div>
     </div>

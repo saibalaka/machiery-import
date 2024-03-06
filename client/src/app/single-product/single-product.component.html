@@ -1,0 +1,19 @@
+    <div class="row">
+        <div class="col">
+            <img src="{{selectedMachine?.image}}" width="100%">
+        </div>
+        <div class="col">
+            <p>Title : {{selectedMachine?.title}}</p>
+            <p>Discription : {{selectedMachine?.discription}}</p>
+            <p>Cost : {{selectedMachine?.cost}}</p>
+            <p>Made In : {{selectedMachine?.madein}}</p>
+            <p>Manufacturer : {{selectedMachine?.manufacturer}}</p>
+            <form class="form-group mb-2" >
+                <label for="qty" class="form-label">Enter Quantity</label>
+                <input type="number" [formControl]="qty" id="qty" class="form-control" min="1">
+            </form>
+            <div class="mb-2">
+                <button type="submit" class="btn" (click)="onSelecting()" [disabled]="!qty.valid">Get Quote</button>
+            </div>
+        </div>
+    </div>    

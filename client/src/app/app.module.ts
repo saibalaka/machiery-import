@@ -11,11 +11,14 @@ import { LoginComponent } from './login/login.component';
 import { UserComponent } from './user/user.component';
 import { ProductsComponent } from './products/products.component';
 import { QuotationComponent } from './quotation/quotation.component';
-import { RequestsComponent } from './requests/requests.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms'
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { ViewComponent } from './view/view.component';
 import { SellerProductsComponent } from './seller-products/seller-products.component';
+import { SellerRequestsComponent } from './seller-requests/seller-requests.component';
+import { BuyerRequestsComponent } from './buyer-requests/buyer-requests.component';
+import { ImporterDetailsComponent } from './importer-details/importer-details.component';
+import { SingleProductComponent } from './single-product/single-product.component';
 
 @NgModule({
   declarations: [
@@ -28,9 +31,12 @@ import { SellerProductsComponent } from './seller-products/seller-products.compo
     UserComponent,
     ProductsComponent,
     QuotationComponent,
-    RequestsComponent,
     ViewComponent,
-    SellerProductsComponent
+    SellerProductsComponent,
+    SellerRequestsComponent,
+    BuyerRequestsComponent,
+    ImporterDetailsComponent,
+    SingleProductComponent
   ],
   imports: [
     BrowserModule,

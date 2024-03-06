@@ -3,6 +3,7 @@ const productApp = exp.Router()
 const expressAsyncHandler = require('express-async-handler')
 const { getProducts,
         getProductsBySellername,
+        getProductById,
         createProduct,
         updateProduct,
         removeProduct} = require('../controller/product-controller')
@@ -32,6 +33,9 @@ productApp.get('/products',expressAsyncHandler(getProducts))
 
 //to get the products by seller name
 productApp.get('/products/:sellername',expressAsyncHandler(getProductsBySellername))
+
+//to get the product by title
+productApp.get('/product/:id',expressAsyncHandler(getProductById))
 
 //to create new product
 productApp.post('/product',upload.single('image'),expressAsyncHandler(createProduct))

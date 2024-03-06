@@ -5,7 +5,6 @@ import { UserService } from './services/user.service';
 export const routerGuard: CanActivateFn = (route, state) => {
   const userServiceObj = inject(UserService)
   const routerObj = inject(Router)
-
   if(userServiceObj.userLoginStatus()){
     return true;
   }else{

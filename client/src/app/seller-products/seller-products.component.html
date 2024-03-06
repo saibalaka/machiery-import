@@ -1,1 +1,52 @@
-<p>seller-products works!</p>
+<app-view [products]="sellerProducts" (data) = "changeData($event)"></app-view>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Property Records</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="container my-4 border border-dark p-3 rounded">  
+            <form class="form-group" [formGroup]="productDetails" (ngSubmit)="onSubmitData()">
+              <div>
+                <label for="title" class="form-label">Title</label>
+                <input type="text" formControlName="title" id="title" class="form-control">
+              </div>
+              <div>
+                <label for="image" class="form-label">Image</label>
+                <input type="string" formControlName="image" id="image" class="form-control">
+              </div>
+              <div>
+                <label for="discription" class="form-label">Discription</label>
+                <textarea formControlName="discription" id="discription" class="form-control"></textarea>
+              </div>
+              <div>
+                <label for="cost" class="form-label">Cost</label>
+                <input type="number" formControlName="cost" id="cost" class="form-control">
+              </div>
+              <div>
+                <label for="madein" class="form-label">Made In</label>
+                <input type="text" formControlName="madein" id="madein" class="form-control">
+              </div>
+              <div>
+                <label for="manufacturer" class="form-label">Manufacturer</label>
+                <input type="text" formControlName="manufacturer" id="manufacturer" class="form-control">
+              </div>
+              <div>
+                <label for="sellername" class="form-label">Sellername</label>
+                <input type="text" formControlName="sellername" id="sellername" class="form-control" value="{{sellername}}" [disabled]="true">
+              </div>
+              <div>
+                <button type="submit" class="btn px-3 m-2" *ngIf="showAdd" data-bs-dismiss="modal">Submit</button>
+                <button type="button" class="btn px-3 m-2" (click)="updateMachinery()" *ngIf="showUpdate" data-bs-dismiss="modal">Update</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

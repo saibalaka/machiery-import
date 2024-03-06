@@ -1,0 +1,43 @@
+.row{
+    display: grid;
+    grid-template-columns: 1fr;
+}
+@media screen and (min-width: 360px) {
+    .row {
+      grid-template-columns:1fr;
+    }
+}
+@media screen and (min-width: 480px) {
+    .row {
+      grid-template-columns: 1fr 1fr;
+    }
+}
+@media screen and (min-width: 720px) {
+    .row {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+@media screen and (min-width: 1024px) {
+    .row {
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    }
+}
+
+.add-card{
+  height: 400px; 
+  border-radius: 10px ; 
+  background-color: rgb(201, 194, 194);
+  font-size:50px ;
+  text-align: center;
+  padding-top:170px;
+  padding-bottom: 170px;  
+}
+
+button{
+  background-color: #33424f;
+  color: #ffffff;
+}
+button:hover{
+  background-color: #33424f;
+  color: #ffffff;
+}

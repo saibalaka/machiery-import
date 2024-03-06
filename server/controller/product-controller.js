@@ -10,13 +10,18 @@ const getProducts = async(req,res)=>{
 const getProductsBySellername = async(req,res)=>{
     let productsList = await Product.find({sellername:req.params.sellername})
     res.status(200).send({message:"got products of seller",payload:productsList})
+}
 
+//to get the product by id
+const getProductById= async(req,res)=>{
+    let product = await Product.findOne({_id:req.params.id})
+    res.status(200).send({message:"got the product",payload:product})
 }
 
 //to create new product
 const createProduct = async(req,res)=>{
     let product = req.body
-    product.image=req.file.url;
+    // product.image=req.file.url;
     let existingProduct = await Product.findOne({$and:[{title:product.title},{sellername:product.sellername}]})
     if(existingProduct!==null){
         res.status(200).send({message:"product already exists please update the existing product"})
@@ -29,14 +34,14 @@ const createProduct = async(req,res)=>{
 //to update the product
 const updateProduct = async(req,res)=>{
     res.status(200).send({message:"updated a product"})
-
 }
 
 //to remove the product
 const removeProduct = async(req,res)=>{
-    res.status(200).send({message:"remove a product"})
+    let removed = await Product.deleteOne({_id:req.params.id})
+    res.status(200).send({message:"remove a product",payload:removed})
 
 }
 
 //exporting the request handlers
-module.exports = {getProducts,getProductsBySellername,createProduct,updateProduct,removeProduct}
+module.exports = {getProducts,getProductsBySellername,getProductById,createProduct,updateProduct,removeProduct}
