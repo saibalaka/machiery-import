@@ -11,13 +11,14 @@ import { Router } from '@angular/router';
 export class ViewComponent implements OnChanges{
 
   @Input() products=[]
-  @Output() data = new EventEmitter<{showAdd:boolean, showUpdate:boolean}>(); 
+  @Output() data = new EventEmitter<{showAdd:boolean, showUpdate:boolean ,productId:string}>(); 
   userServiceObj = inject(UserService)
   productServiceObj = inject(ProductService)
   routerObj = inject(Router)
   role = this.userServiceObj.role()
   showAdd = false;
   showUpdate = false;
+  productId = '';
 
   constructor(){
     effect(()=>{
@@ -31,18 +32,20 @@ export class ViewComponent implements OnChanges{
 
   sendData() 
   { 
-    this.data.emit({showAdd:this.showAdd, showUpdate:this.showUpdate}); 
+    this.data.emit({showAdd:this.showAdd, showUpdate:this.showUpdate ,productId:''}); 
   } 
 
   addProduct(){
     this.showAdd=true;
     this.showUpdate = false;
+    this.productId = '';
     this.sendData()
   }
 
-  editProduct(){
+  editProduct(proId){
     this.showAdd=false;
     this.showUpdate = true;
+    this.productId = proId,
     this.sendData()
   }
 

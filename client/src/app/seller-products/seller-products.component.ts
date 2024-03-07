@@ -16,8 +16,10 @@ export class SellerProductsComponent implements OnInit {
   sellerProducts:[]
   seller = this.userServiceObj.logedUser()
   sellername = this.userServiceObj.logedUsername()
+  existingProductdata
   showAdd = false;
   showUpdate = false;
+  productId = '';
 
 
   productDetails = this.fb.group({
@@ -84,6 +86,7 @@ export class SellerProductsComponent implements OnInit {
   changeData(data){
     this.showAdd=data.showAdd
     this.showUpdate=data.showUpdate
+    this.productDetails = data.productId
   }
 
 }

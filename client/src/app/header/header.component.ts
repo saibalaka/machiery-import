@@ -1,4 +1,4 @@
-import { Component, OnInit, effect, inject } from '@angular/core';
+import { Component,effect, inject } from '@angular/core';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { UserService } from '../services/user.service';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent{
 
   userServiceObj = inject(UserService)
   loginStatus = this.userServiceObj.userLoginStatus()
@@ -21,10 +21,6 @@ export class HeaderComponent implements OnInit {
     })
   }
 
-  //ng on it it lifecycle method
-  ngOnInit(): void {
-    setInterval(()=>this.userServiceObj.setLoginStatus(),1000)
-  }
 
 
   //method for logout

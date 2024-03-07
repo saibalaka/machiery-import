@@ -9,7 +9,7 @@ import { Importer, User, Userlog } from '../models/user';
 export class UserService {
 
   httpClientObj = inject(HttpClient);
-  role = signal('buyer')
+  role = signal('')
   userLoginStatus = signal(false)
   logedUser = signal<User>({_id:'',username:'',password:'',email:'',companyname:'',requests:[{}]})
   logedUsername = signal('')
@@ -79,7 +79,7 @@ export class UserService {
       this.userLoginStatus.set(false)
       this.logedUser.set({_id:'',username:'',password:'',email:'',companyname:'',requests:[{}]})
       this.logedUsername.set('')
-      this.role.set('buyer')
+      this.role.set('')
     }
   }
 

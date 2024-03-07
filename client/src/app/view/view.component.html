@@ -25,7 +25,7 @@
                   <h5 class="card-title">{{machine?.title}}</h5>
                   <p class="card-text">{{machine?.discription}}</p>
                   <p class="card-text">{{machine?.cost | currency:"INR"}}</p>
-                  <button type="button" class="btn px-2" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="editProduct()">edit</button>
+                  <button type="button" class="btn px-2" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="editProduct(machine?._id)">edit</button>
                   <button type="button" class="btn px-2" (click)="removeProduct(machine?._id)">remove</button>
                 </div>
               </div>
