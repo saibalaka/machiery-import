@@ -27,10 +27,10 @@ export class LoginComponent {
     this.userServiceObj.userLogin(userCred,this.userCred.value.role).subscribe({
       next:res=>{
         if(res.message==='Login success'){
-          let user = JSON.stringify(res.payload)
           localStorage.setItem('token',res.token)
-          localStorage.setItem('user',user)
-          this.userServiceObj.role.set(this.userCred.value.role)
+          this.userServiceObj.setLoggedUser(res.payload)
+          this.userServiceObj.setUserRole(this.userCred.value.role)
+          this.userServiceObj.setLoginStatus(true)
           this.routerObj.navigate(['user'])
         }else{
           this.message=res.message

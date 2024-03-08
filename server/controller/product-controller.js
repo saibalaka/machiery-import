@@ -33,7 +33,9 @@ const createProduct = async(req,res)=>{
 
 //to update the product
 const updateProduct = async(req,res)=>{
-    res.status(200).send({message:"updated a product"})
+    console.log("req.body is ",req.body)
+    let updatedProduct = await Product.findByIdAndUpdate(req.body._id,req.body)
+    res.status(200).send({message:"updated a product",payload:updatedProduct})
 }
 
 //to remove the product

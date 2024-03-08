@@ -1,6 +1,5 @@
 import { Component,inject,effect,OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
-import { Importer } from '../models/user';
 import { ProductService } from '../services/product.service';
 
 @Component({
@@ -72,6 +71,15 @@ export class SellerRequestsComponent implements OnInit{
     this.userServiceObj.deleteRequest(deleteObj,'seller').subscribe({
       next:res=>{
         console.log(res)
+        this.userServiceObj.getUserRequests(this.username,this.role).subscribe({
+          next:res=>{
+            console.log("buyer ",res)
+            this.sellerRequests = res.payload
+          },
+          error:err=>{
+            console.log("error getting user requests ",err)
+          }
+        })
       },
       error:err=>{
         console.log("error removing the seller request",err)

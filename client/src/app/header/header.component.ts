@@ -21,11 +21,9 @@ export class HeaderComponent{
     })
   }
 
-
-
   //method for logout
   logout(){
     localStorage.removeItem('token')
-    localStorage.removeItem('user')
+    this.userServiceObj.setLoginStatus(false)
   }
 }

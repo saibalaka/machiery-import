@@ -26,7 +26,7 @@ export class ProductService {
 
     //update the existing product
     updateProduct(modifiedProduct):Observable<any>{
-        return this.httpClientObj.post(`http://localhost:4000/product-api/product`,modifiedProduct)
+        return this.httpClientObj.put(`http://localhost:4000/product-api/product`,modifiedProduct)
     }
 
     //remove the product by id

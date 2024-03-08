@@ -12,13 +12,14 @@ import { UserComponent } from './user/user.component';
 import { ProductsComponent } from './products/products.component';
 import { QuotationComponent } from './quotation/quotation.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms'
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { ViewComponent } from './view/view.component';
 import { SellerProductsComponent } from './seller-products/seller-products.component';
 import { SellerRequestsComponent } from './seller-requests/seller-requests.component';
 import { BuyerRequestsComponent } from './buyer-requests/buyer-requests.component';
 import { ImporterDetailsComponent } from './importer-details/importer-details.component';
 import { SingleProductComponent } from './single-product/single-product.component';
+import { authenticationInterceptor } from './authentication.interceptor';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,7 @@ import { SingleProductComponent } from './single-product/single-product.componen
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [provideHttpClient(withFetch())],
+  providers: [provideHttpClient(withFetch()),provideHttpClient(withInterceptors([authenticationInterceptor]))],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

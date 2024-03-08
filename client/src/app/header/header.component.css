@@ -1,6 +1,10 @@
 *{
     color: #fff;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
+
 .nav-link.active{
     color: #fff;
 }

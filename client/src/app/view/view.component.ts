@@ -32,13 +32,14 @@ export class ViewComponent implements OnChanges{
 
   sendData() 
   { 
-    this.data.emit({showAdd:this.showAdd, showUpdate:this.showUpdate ,productId:''}); 
+    this.data.emit({showAdd:this.showAdd, showUpdate:this.showUpdate ,productId:this.productId}); 
   } 
 
   addProduct(){
     this.showAdd=true;
     this.showUpdate = false;
     this.productId = '';
+    console.log("sending empty product id ")
     this.sendData()
   }
 
@@ -46,6 +47,7 @@ export class ViewComponent implements OnChanges{
     this.showAdd=false;
     this.showUpdate = true;
     this.productId = proId,
+    console.log("sending product id ")
     this.sendData()
   }
 

@@ -44,12 +44,13 @@ export class RegisterComponent {
 
   onSubmitUser(){
     this.userServiceObj.role.set(this.user.value.role)
-    let newUser = new User('',this.user.value.username,this.user.value.password,this.user.value.email,this.user.value.companyname,this.user.value.requests,)
+    let newUser = new User(this.user.value.username,this.user.value.password,this.user.value.email,this.user.value.companyname,this.user.value.requests,)
     this.userServiceObj.createUser(newUser,this.user.value.role).subscribe({
       next:res=>{
         if(res.message==='user already exists'){
           this.message = res.message;
         }else{
+          console.log("registration ",res)
           this.routerObj.navigate(['login'])
         }
       },

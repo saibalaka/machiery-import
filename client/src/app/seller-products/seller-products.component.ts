@@ -2,6 +2,7 @@ import { Component, OnInit, effect, inject } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { ProductService } from '../services/product.service';
 import { FormBuilder,Validators } from '@angular/forms';
+import { Product } from '../models/product';
 
 @Component({
   selector: 'app-seller-products',
@@ -16,7 +17,7 @@ export class SellerProductsComponent implements OnInit {
   sellerProducts:[]
   seller = this.userServiceObj.logedUser()
   sellername = this.userServiceObj.logedUsername()
-  existingProductdata
+  existingProductdata:Product
   showAdd = false;
   showUpdate = false;
   productId = '';
@@ -26,7 +27,7 @@ export class SellerProductsComponent implements OnInit {
     title:[''],
     image:[''],
     discription:[''],
-    cost:[''],
+    cost:<number><unknown>[''],
     madein:[''],
     manufacturer:[''],
     sellername:['',Validators.required]
@@ -42,6 +43,20 @@ export class SellerProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProductsOfSeller()
+  }
+
+  //get product by id 
+  getProductById(productId){
+    this.productServiceObj.getProductById(productId).subscribe({
+      next:res=>{
+        this.existingProductdata = res.payload
+        this.fillTheForm()
+        this.getProductsOfSeller()
+      },
+      error:err=>{
+        console.log("error getting all the products ",err)
+      }
+    })
   }
 
   //get products data 
@@ -71,7 +86,9 @@ export class SellerProductsComponent implements OnInit {
   }
 
   updateMachinery(){
-    let newProduct = this.productDetails.value
+    let prod = this.productDetails.value
+    let newProduct = new Product(this.existingProductdata._id,prod.title,prod.image,prod.discription,Number(prod.cost),prod.madein,prod.manufacturer,prod.sellername)
+    console.log("sending the updated data is ",newProduct)
     this.productServiceObj.updateProduct(newProduct).subscribe({
       next:res=>{
         console.log("updating ",res)
@@ -86,7 +103,25 @@ export class SellerProductsComponent implements OnInit {
   changeData(data){
     this.showAdd=data.showAdd
     this.showUpdate=data.showUpdate
-    this.productDetails = data.productId
+    this.productId = data.productId
+    if(this.productId!==''){
+      console.log("product id is ",data.productId)
+      this.getProductById(data.productId)
+    }else{
+      console.log("product id when sending empty product ",data.productId)
+      console.log("product id when  empty product ",this.productId)
+    }
+  }
+
+  //fill the form with existing data
+  fillTheForm(){
+    this.productDetails.controls['title'].setValue(this.existingProductdata.title);
+    this.productDetails.controls['image'].setValue(this.existingProductdata.image);
+    this.productDetails.controls['discription'].setValue(this.existingProductdata.discription);
+    this.productDetails.controls['cost'].setValue(this.existingProductdata.cost);
+    this.productDetails.controls['madein'].setValue(this.existingProductdata.madein);
+    this.productDetails.controls['manufacturer'].setValue(this.existingProductdata.manufacturer);
+    this.productDetails.controls['sellername'].setValue(this.existingProductdata.sellername);
   }
 
 }

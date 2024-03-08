@@ -11,7 +11,7 @@ export class UserService {
   httpClientObj = inject(HttpClient);
   role = signal('')
   userLoginStatus = signal(false)
-  logedUser = signal<User>({_id:'',username:'',password:'',email:'',companyname:'',requests:[{}]})
+  logedUser = signal<User>({username:'',password:'',email:'',companyname:'',requests:[{}]})
   logedUsername = signal('')
 
   //create new user
@@ -69,17 +69,23 @@ export class UserService {
     return this.httpClientObj.get(`http://localhost:4000/importer-api/importer-id/${id}`)
   }
 
+  //set the logied in user status
+  setUserRole(value){
+    this.role.set(value)
+  }
+
+  //set logged user
+  setLoggedUser(user){
+    this.logedUser.set(user)
+    this.logedUsername.set(user.username)
+  }
+
   //set userlogin status
-  setLoginStatus(){
-    if(localStorage.getItem('token')!==null){
-      this.userLoginStatus.set(true)
-      this.logedUser.set(JSON.parse(localStorage.getItem('user')))
-      this.logedUsername.set(JSON.parse(localStorage.getItem('user')).username)
-    }else{
+  setLoginStatus(value){
+    if(localStorage.getItem('token')===null){
       this.userLoginStatus.set(false)
-      this.logedUser.set({_id:'',username:'',password:'',email:'',companyname:'',requests:[{}]})
-      this.logedUsername.set('')
-      this.role.set('')
+    }else{
+      this.userLoginStatus.set(value)
     }
   }
 

@@ -1,11 +1,11 @@
-post http://localhost:4000/seller-api/seller
+post http://localhost:4000/buyer-api/buyer
 Content-Type: application/json
 
 {
-    "username":"Sai",
-    "password":"123456",
-    "emailId":"ss",
-    "companyname":"ddd",
+    "username":"Sanju Rao",
+    "password":"ssssss",
+    "emailId":"sanju@gmail.com",
+    "companyname":"Sanju works",
     "requsts":[]
 }
 
@@ -26,7 +26,7 @@ get http://localhost:4000/product-api/products
 delete http://localhost:4000/product-api/product/65e430537940be683f5a5698
 
 ###
-get http://localhost:4000/seller-api/seller/Sanju
+get http://localhost:4000/buyer-api/buyer/Sanju
 
 ###
 put http://localhost:4000/buyer-api/buyer-requests
@@ -45,7 +45,7 @@ Content-Type: application/json
 
 {
     "index":0,
-    "buyerId":"65e68d36f202e7f025e213c1"
+    "buyerId":"65e99989545c6d6b1188d006"
 }
 
 ###
@@ -56,4 +56,19 @@ Content-Type: application/json
     "index":1,
     "status":"Accept",
     "buyerId":"65e68d36f202e7f025e213c1"
+}
+
+###
+put http://localhost:4000/product-api/product
+Content-Type: application/json
+
+{
+    "title": "Wood Cutter",
+    "image": "https://5.imimg.com/data5/SELLER/Default/2022/2/MB/KS/RA/50346121/kze02-110-110mm-marble-cutter-500x500.jpg",
+    "discription": "The 4-inch saw blade is made of strong high-speed alloy metal that's sharp and neat. Enabled with advanced technology, this saw blade offers high performance and has a longer service life.",
+    "cost": 5000,
+    "madein": "China",
+    "manufacturer": "Bishandas Traders",
+    "sellername": "Sai",
+    "_id": "65e68c3ff202e7f025e213ae"
 }

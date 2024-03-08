@@ -18,8 +18,8 @@ export class SingleProductComponent implements OnInit {
   activatedRoute = inject(ActivatedRoute)
   selectedMachine
   importerName = this.userServiceObj.logedUsername()
-  buyerDetails = this.userServiceObj.logedUser()
-  sellerDetails:User
+  buyerDetails
+  sellerDetails
   qty= new FormControl('',Validators.required)
 
   constructor(){
@@ -61,7 +61,7 @@ export class SingleProductComponent implements OnInit {
         if(res.message==='Importer does not exist'){
           let productId = this.activatedRoute.snapshot.paramMap.get('id');
           console.log("productId : ",productId)
-          let buyerReq = {buyerId:this.buyerDetails._id,productId:productId,status:'pending',qty:Number(this.qty.value)}
+          let buyerReq = {buyerId:this.buyerDetails?._id,productId:productId,status:'pending',qty:Number(this.qty.value)}
           console.log(`pushing data into buyer productId:${productId},status:'pending',qty:${Number(this.qty.value)}`)
           this.userServiceObj.updateRequests(buyerReq,'buyer')
           this.routerObj.navigate(['importer-details'])

@@ -1,6 +1,6 @@
 <p class="text-center h1 mt-5">Create Account</p>
 <p class="text-center text-danger p-3">{{message}}</p>
-<div class="container" style="width:40%;">
+<div class="container">
     <form class="form-group" [formGroup]="user" (ngSubmit)="onSubmitUser()">
         <div class="mb-2 form-check">
             <input type="radio" formControlName="role" id="buyer" value="buyer" class="form-check-input">
