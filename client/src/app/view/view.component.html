@@ -1,42 +1,28 @@
-@if(role==='buyer'){
-<div class="row">
-    @for(machine of products;track machine){
-        <div class="col-12">
-            <div class="card">
-              <div class="card-img-top p-2">
-                <img src="{{machine?.image}}" alt="Card image cap">
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">{{machine?.title}}</h5>
-                <p class="card-text">{{machine?.discription}}</p>
-                <p class="card-text">{{machine?.cost | currency:"INR"}}</p>
-                <button type="button" class="btn px-2" (click)="viewData(machine._id)">View</button>
-              </div>
+<div class="row mx-auto">
+  @for(machine of products;track machine){
+      <div class="col h-auto">
+          <div class="card">
+            <div class="card-img-top p-2">
+              <img src="{{machine?.image}}" alt="Card image cap">
             </div>
-        </div>
-    }
-</div>
-}
-@else{
-  <div class="row mx-auto">
-    @for(machine of products;track machine){
-        <div class="col-12">
-            <div class="card">
-              <div class="card-img-top p-2">
-                <img src="{{machine?.image}}" alt="Card image cap">
-              </div>
-                <div class="card-body">
-                  <h5 class="card-title">{{machine?.title}}</h5>
-                  <p class="card-text">{{machine?.discription}}</p>
-                  <p class="card-text">{{machine?.cost | currency:"INR"}}</p>
-                  <div class="buttons">
-                    <button type="button" class="btn px-2" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="editProduct(machine?._id)">Edit</button>
-                    <button type="button" class="btn px-2" (click)="removeProduct(machine._id)">Remove</button>
-                  </div>
+            <div class="card-body">
+              <h5 class="card-title">{{machine?.title}}</h5>
+              <p class="card-text">{{machine?.discription.substring(0,60)+'...'}}</p>
+              <p class="card-text">{{machine?.cost | currency:"INR"}}</p>
+              @if(role==='buyer'){
+                <button type="button" class="btn px-2" (click)="viewData(machine._id)">View</button>
+              }
+              @else{
+                <div class="buttons">
+                  <button type="button" class="btn px-2" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="editProduct(machine?._id)">Edit</button>
+                  <button type="button" class="btn px-2" (click)="removeProduct(machine._id)">Remove</button>
                 </div>
-              </div>
+              }
+            </div>
+          </div>
         </div>
-    }
-    <div class="add-card" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="addProduct()">+</div>
-  </div>
-}
+  }
+  @if(role==='seller'){
+    <div class="add-card h-auto" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="addProduct()">+</div>
+  }
+</div>

@@ -2,14 +2,33 @@
 div{
     margin-bottom: 10px;
 }
-form{
-    background-color: #e1e8ed;
-    border-radius: 20px;
-    margin: 50px 50px;
+.container1{
+    width:200px ;
+    margin: auto;
+    margin-top: 20px;
     padding: 20px 50px;
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
+    border-radius: 10px;
+    background-color: #e1e8ed;
+}
+@media screen and (min-width: 360px) {
+    .container1{
+        width:270px ;
+    }
+}
+@media screen and (min-width: 480px) {
+    .container1{
+        width: 320px;
+    }
+}
+@media screen and (min-width: 720px) {
+    .container1{
+        width: 370px;
+    }
+}
+@media screen and (min-width: 1024px) {
+    .container1{
+        width: 450px;
+    }
 }
 button{
     background-color: #33424f;
