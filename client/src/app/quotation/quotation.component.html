@@ -36,9 +36,9 @@
                 <tr>
                     <td class="border border-dark">{{productDetails?.discription}}</td>
                     <td class="border border-dark">{{qutationData?.qty}}</td>
-                    <td class="border border-dark">{{productDetails?.cost| currency:"INR"}}</td>
-                    <!-- <td class="border border-dark">{{insurance | currency:"INR"}}</td>
-                    <td class="border border-dark">{{freight | currency:"INR"}}</td> -->
+                    <td class="border border-dark">{{rate| currency:"INR"}}</td>
+                    <td class="border border-dark">{{insurance | currency:"INR"}}</td>
+                    <td class="border border-dark">{{freight | currency:"INR"}}</td>
                 </tr>
             </tbody>
         </table>
@@ -69,15 +69,15 @@
             <table class=" dd d-inline-block">
                 <tr>
                     <td class="border border-dark p-2">Sub Total</td>
-                    <!-- <td class="border border-dark p-2">{{rate | currency:"INR"}}</td> -->
-                </tr>
-                <tr>
-                    <td class="border border-dark p-2">Total</td>
-                    <!-- <td class="border border-dark p-2">{{cif | currency:"INR"}}</td> -->
+                    <td class="border border-dark p-2">{{cif | currency:"INR"}}</td>
                 </tr>
                 <tr>
                     <td class="border border-dark p-2">Custom Duty</td>
-                    <!-- <td class="border border-dark p-2">{{customDuty | currency:"INR"}}</td> -->
+                    <td class="border border-dark p-2">{{customDuty | currency:"INR"}}</td>
+                </tr>
+                <tr>
+                    <td class="border border-dark p-2">Total</td>
+                    <td class="border border-dark p-2">{{total | currency:"INR"}}</td>
                 </tr>
             </table>
         </div>

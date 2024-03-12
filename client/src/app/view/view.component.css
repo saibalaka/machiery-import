@@ -1,7 +1,13 @@
 .row{
     display: grid;
     grid-template-columns: 1fr;
+    gap: 20px;
 }
+
+.card:hover{
+  box-shadow: 0 10px 5px #33424f;
+}
+
 img{
   width: 180px;
   aspect-ratio: 1;

@@ -42,6 +42,7 @@ export class RegisterComponent {
     return this.user.get('companyname');
   }
 
+  //method to store the data of the user after submition
   onSubmitUser(){
     this.userServiceObj.role.set(this.user.value.role)
     let newUser = new User(this.user.value.username,this.user.value.password,this.user.value.email,this.user.value.companyname,this.user.value.requests,)
@@ -60,6 +61,8 @@ export class RegisterComponent {
     })
   }
 
+
+  //method to navigate to login page
   haveAccount(){
     this.routerObj.navigate(['login'])
   }

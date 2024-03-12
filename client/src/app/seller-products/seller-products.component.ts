@@ -33,7 +33,7 @@ export class SellerProductsComponent implements OnInit {
     sellername:['',Validators.required]
   })
   
-  
+  //constroctor to load the latest data from the service
   constructor(){
     effect(()=>{
       this.seller = this.userServiceObj.logedUser()
@@ -41,6 +41,7 @@ export class SellerProductsComponent implements OnInit {
     })
   }
 
+  //ng oninit life cycle method
   ngOnInit(): void {
     this.getProductsOfSeller()
   }
@@ -72,6 +73,7 @@ export class SellerProductsComponent implements OnInit {
     }) 
   }
 
+  //to store the new product data into the data base
   onSubmitData(){
     let newProduct = this.productDetails.value
     this.productServiceObj.createProduct(newProduct).subscribe({
@@ -85,6 +87,7 @@ export class SellerProductsComponent implements OnInit {
 
   }
 
+  //to update the existing data
   updateMachinery(){
     let prod = this.productDetails.value
     let newProduct = new Product(this.existingProductdata._id,prod.title,prod.image,prod.discription,Number(prod.cost),prod.madein,prod.manufacturer,prod.sellername)
@@ -100,6 +103,7 @@ export class SellerProductsComponent implements OnInit {
 
   }
 
+  //method to get input from the child component
   changeData(data){
     this.showAdd=data.showAdd
     this.showUpdate=data.showUpdate

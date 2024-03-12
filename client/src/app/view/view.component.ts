@@ -20,21 +20,25 @@ export class ViewComponent implements OnChanges{
   showUpdate = false;
   productId = '';
 
+  //constructor method
   constructor(){
     effect(()=>{
       this.role=this.userServiceObj.role()
     })
   }
 
+  //onchanges method to track procucts
   ngOnChanges(changes: SimpleChanges) {
     changes['products']
   }
 
+  //method to send data through the evnt emitter
   sendData() 
   { 
     this.data.emit({showAdd:this.showAdd, showUpdate:this.showUpdate ,productId:this.productId}); 
   } 
 
+  //to send data to parant when selecting add product
   addProduct(){
     this.showAdd=true;
     this.showUpdate = false;
@@ -43,6 +47,7 @@ export class ViewComponent implements OnChanges{
     this.sendData()
   }
 
+  //to send data to parant when selecting edit product
   editProduct(proId){
     this.showAdd=false;
     this.showUpdate = true;

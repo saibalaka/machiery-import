@@ -30,6 +30,11 @@ export class BuyerRequestsComponent {
   
   ngOnInit(): void {
     this.view = false
+    this.getRequests()
+  }
+
+  //method to get requests array of buyer 
+  getRequests(){
     this.userServiceObj.getUserRequests(this.username,this.role).subscribe({
       next:res=>{
         this.buyerRequests = res.payload
@@ -42,9 +47,9 @@ export class BuyerRequestsComponent {
         console.log("error getting user requests ",err)
       }
     })
-
   }
 
+  //to remove request from the buyer requests
   remove(index:number,id:string){
     let deleteObj = {index:index,buyerId:id}
     this.userServiceObj.deleteRequest(deleteObj,'buyer').subscribe({

@@ -4,36 +4,68 @@
         <div>
             <label for="companyName" class="form-label">Company Name:</label>
             <input type="text" formControlName="companyName" id="companyName" class="form-control">
+            <div *ngIf="companyName.invalid&&(companyName.dirty||companyName.touched)">
+                <small class="text-danger" *ngIf="companyName.errors?.['required']">Companyname is required</small>
+                <small class="text-danger" *ngIf="companyName.errors?.['pattern']">Only letters and spaces are allowed</small>
+            </div>
         </div>
         <div>
             <label for="typeOfBuss" class="form-label">Type Of Business:</label>
             <input type="text" formControlName="typeOfBuss" id="typeOfBuss" class="form-control">
+            <div *ngIf="typeOfBuss.invalid&&(typeOfBuss.dirty||typeOfBuss.touched)">
+                <small class="text-danger" *ngIf="typeOfBuss.errors?.['required']">Type of business is required</small>
+                <small class="text-danger" *ngIf="typeOfBuss.errors?.['pattern']">Only letters and spaces are allowed</small>
+            </div>
         </div>
         <div>
             <label for="name" class="form-label">Name:</label>
             <input type="text" formControlName="name" id="name" class="form-control">
+            <div *ngIf="name.invalid&&(name.dirty||name.touched)">
+                <small class="text-danger" *ngIf="name.errors?.['required']">Name is required</small>
+                <small class="text-danger" *ngIf="name.errors?.['pattern']">Only letters and spaces are allowed</small>
+            </div>
         </div>
         <div>
             <label for="emailId" class="form-label">Email Id:</label>
             <input type="text" formControlName="emailId" id="emailId" class="form-control">
+            <div *ngIf="emailId.invalid&&(emailId.dirty||emailId.touched)">
+                <small class="text-danger" *ngIf="emailId.errors?.['required']">Email is required</small>
+                <small class="text-danger" *ngIf="emailId.errors?.['email']">Invalid email Id</small>
+            </div>
         </div>
         <div>
             <label for="phone" class="form-label">Phone Number:</label>
-            <input type="text" formControlName="phone" id="phone" class="form-control">
+            <input type="text" formControlName="phone" id="phone" class="form-control" pattern="[6-9]{1}[0-9]{9}">
+            <div *ngIf="phone.invalid&&(phone.dirty||phone.touched)">
+                <small class="text-danger" *ngIf="phone.errors?.['required']">Phone number is required</small>
+                <small class="text-danger" *ngIf="phone.errors?.['pattern']">10 digits are required</small>
+            </div>
         </div>
         <div formGroupName="address">
             <h2>Address</h2>
             <div>
                 <label for="city" class="form-label">City:</label>
                 <input type="text" formControlName="city" id="city" class="form-control">
+                <div *ngIf="city.invalid&&(city.dirty||city.touched)">
+                    <small class="text-danger" *ngIf="city.errors?.['required']">City name is required</small>
+                    <small class="text-danger" *ngIf="city.errors?.['pattern']">Only letters and spaces are allowed</small>
+                </div>
             </div>
             <div>
                 <label for="country" class="form-label">Country:</label>
                 <input type="text" formControlName="country" id="country" class="form-control">
+                <div *ngIf="country.invalid&&(country.dirty||country.touched)">
+                    <small class="text-danger" *ngIf="country.errors?.['required']">Country name is required</small>
+                    <small class="text-danger" *ngIf="country.errors?.['pattern']">Only letters and spaces are allowed</small>
+                </div>
             </div>
             <div>
                 <label for="pinCode" class="form-label">Pin Code:</label>
-                <input type="text" formControlName="pinCode" id="pinCode" class="form-control">
+                <input type="text" formControlName="pinCode" id="pinCode" class="form-control" pattern="[1-8]{1}[0-9]{5}">
+                <div *ngIf="pinCode.invalid&&(pinCode.dirty||pinCode.touched)">
+                    <small class="text-danger" *ngIf="pinCode.errors?.['required']">Pincode is required</small>
+                    <small class="text-danger" *ngIf="pinCode.errors?.['pattern']">6 digits are required</small>
+                </div>
             </div>
         </div>
         <div>

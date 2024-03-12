@@ -27,6 +27,11 @@ export class SellerRequestsComponent implements OnInit{
   
   
   ngOnInit(): void {
+    this.getRequests()
+  }
+
+   //method to get the requests array of seller
+   getRequests(){
     this.userServiceObj.getUserRequests(this.username,this.role).subscribe({
       next:res=>{
         this.sellerRequests = res.payload
@@ -39,9 +44,9 @@ export class SellerRequestsComponent implements OnInit{
         console.log("error getting user requests ",err)
       }
     })
-
   }
 
+  //to send response to the buyer
   sendResponse(index,status,bId,sId){
     let statusObj = {index:index,status:status,buyerId:bId,sellerId:sId}
     //response status in buyer req

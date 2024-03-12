@@ -1,4 +1,4 @@
-import { Component,effect, inject } from '@angular/core';
+import { Component,OnInit,effect, inject } from '@angular/core';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -6,11 +6,17 @@ import { UserService } from '../services/user.service';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
-export class HeaderComponent{
+export class HeaderComponent implements OnInit{
 
   userServiceObj = inject(UserService)
   loginStatus = this.userServiceObj.userLoginStatus()
   role = this.userServiceObj.role()
+
+  //ng oninit method to load at the beginning
+  ngOnInit(): void {
+    this.loginStatus = this.userServiceObj.userLoginStatus()
+    this.role = this.userServiceObj.role()
+  }
 
 
   //constructor method

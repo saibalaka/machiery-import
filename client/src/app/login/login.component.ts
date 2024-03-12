@@ -16,12 +16,14 @@ export class LoginComponent {
   routerObj = inject(Router)
   message:string = ''
 
+  //form builder for getting the user credentials
   userCred = this.fb.group({
     username:['',[Validators.required,Validators.pattern('[a-zA-Z ]*')]],
     password:['',[Validators.required,Validators.pattern('[a-zA-Z ]*'),Validators.minLength(6)]],
     role:['',Validators.required]
   })
 
+  //method to get and verify the credentials submitted by the user
   userLogin(){
     let userCred = new Userlog(this.userCred.value.username,this.userCred.value.password)
     this.userServiceObj.userLogin(userCred,this.userCred.value.role).subscribe({
@@ -50,6 +52,8 @@ export class LoginComponent {
     return this.userCred.get('password')
   }
 
+
+  //method to navigate to register component
   createAccount(){
     this.routerObj.navigate(['register'])
   }

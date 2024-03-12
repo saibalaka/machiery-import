@@ -18,6 +18,14 @@ export class QuotationComponent implements OnChanges {
   buyerDetails:User
   sellerDetails:User
   productDetails:Product
+  rate:number
+  insurance:number;
+  freight:number;
+  cif:number;
+  customDuty:number;
+  total:number;
+
+
 
   ngOnChanges(changes: SimpleChanges): void {
     changes['qutationData']
@@ -60,12 +68,23 @@ export class QuotationComponent implements OnChanges {
       next:res=>{
         console.log("Product details ",res)
         this.productDetails = res.payload
+        this.calculateCosts()
       },
       error:err=>{
         console.log("error getting product details",err)
       }
     })
 
+  }
+
+  //calculating costs
+  calculateCosts(){
+    this.rate = this.qutationData.qty*this.productDetails?.cost;
+    this.freight = this.rate*0.1;
+    this.insurance = this.rate*0.005;
+    this.cif=this.rate+this.insurance+this.freight;
+    this.customDuty=this.cif*0.298;
+    this.total = this.customDuty+this.cif
   }
 
   //go back to requests

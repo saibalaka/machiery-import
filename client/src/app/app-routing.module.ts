@@ -33,6 +33,7 @@ const routes: Routes = [
   {
     path:'products',
     component:ProductsComponent,
+    canActivate:[routerGuard]
   },
   {
     path:'seller-requests',

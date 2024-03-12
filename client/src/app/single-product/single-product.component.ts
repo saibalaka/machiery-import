@@ -29,23 +29,19 @@ export class SingleProductComponent implements OnInit {
     })
   }
 
+  //oninit method
   ngOnInit() {
     let id = this.activatedRoute.snapshot.paramMap.get('id');
+    this.getProductById(id)
+  }
+
+  //get products by id 
+  getProductById(id){
     this.productServiceObj.getProductById(id).subscribe({
       next:res=>{
-        console.log("single product component res ",res)
         let sellerName = res.payload.sellername
-        console.log("seller name ",sellerName)
         this.selectedMachine = res.payload
-        this.userServiceObj.getUserByName(sellerName,'seller').subscribe({
-          next:res=>{
-            this.sellerDetails = res.payload
-            console.log("seller details ",res)
-          },
-          error:err=>{
-            console.log("error getting the seller details ",err)
-          }
-        })
+        this.getSellerData(sellerName)
       },
       error:err=>{
         console.log("Error getting product details ",err)
@@ -53,47 +49,70 @@ export class SingleProductComponent implements OnInit {
     })
   }
 
+  //method to get the userdetails by name
+  getSellerData(sellerName){
+    this.userServiceObj.getUserByName(sellerName,'seller').subscribe({
+      next:res=>{
+        this.sellerDetails = res.payload
+        console.log("seller details ",res)
+      },
+      error:err=>{
+        console.log("error getting the seller details ",err)
+      }
+    })
+  }
+
+  //afte selecting the product
   onSelecting(){
     console.log("importer name is ",this.importerName)
     this.userServiceObj.getImporterByName(this.importerName).subscribe({
       next:res=>{
         console.log("got the importer detils after get qoute",res)
         if(res.message==='Importer does not exist'){
-          let productId = this.activatedRoute.snapshot.paramMap.get('id');
-          console.log("productId : ",productId)
-          let buyerReq = {buyerId:this.buyerDetails?._id,productId:productId,status:'pending',qty:Number(this.qty.value)}
-          console.log(`pushing data into buyer productId:${productId},status:'pending',qty:${Number(this.qty.value)}`)
-          this.userServiceObj.updateRequests(buyerReq,'buyer')
-          this.routerObj.navigate(['importer-details'])
+          this.navigateToImporter()
         }else{
           let productId = this.activatedRoute.snapshot.paramMap.get('id');
-          console.log("productId : ",productId)
           let importerId = res.payload._id
-          console.log("importerId : ",importerId)
           let buyerReq = {buyerId:this.buyerDetails._id,productId:productId,status:'pending',qty:Number(this.qty.value),sellerId:this.sellerDetails._id}
           let sellerReq = {productId:productId,importerId:importerId,buyerId:this.buyerDetails._id,sellerId:this.sellerDetails._id,status:'pending',qty:Number(this.qty.value)}
-          this.userServiceObj.updateRequests(buyerReq,'buyer').subscribe({
-            next:res=>{
-              console.log("after pushig data to buyer",res)
-            },
-            error:err=>{
-              console.log("error pushing data to buyer ",err)
-            }
-          })
-          this.userServiceObj.updateRequests(sellerReq,'seller').subscribe({
-            next:res=>{
-              console.log("after pushig data to seller",res)
-            },
-            error:err=>{
-              console.log("error pushing data to seller ",err)
-            }
-          })
-          console.log(`pushing data into buyer productId:${productId},status:'pending',qty:${Number(this.qty.value)}`)
-          console.log(`pushing data into seller productId:${productId},importerId:${importerId},buyerId:${this.buyerDetails._id}`)
+          this.updateBuyer(buyerReq)
+          this.updateSeller(sellerReq)
           this.routerObj.navigate(['buyer-requests'])
         }
       }
     })
-    
   }
+
+  //if imoporter is new
+  navigateToImporter(){
+    let productId = this.activatedRoute.snapshot.paramMap.get('id');
+    let buyerReq = {buyerId:this.buyerDetails?._id,productId:productId,status:'pending',qty:Number(this.qty.value)}
+    this.userServiceObj.updateRequests(buyerReq,'buyer')
+    this.routerObj.navigate(['importer-details'])
+  }
+
+  //update seller requests
+  updateSeller(sellerReq){
+    this.userServiceObj.updateRequests(sellerReq,'seller').subscribe({
+      next:res=>{
+        console.log("after pushig data to seller",res)
+      },
+      error:err=>{
+        console.log("error pushing data to seller ",err)
+      }
+    })
+  }
+
+  //update buyer requests
+  updateBuyer(buyerReq){
+    this.userServiceObj.updateRequests(buyerReq,'buyer').subscribe({
+      next:res=>{
+        console.log("after pushig data to buyer",res)
+      },
+      error:err=>{
+        console.log("error pushing data to buyer ",err)
+      }
+    })
+  }
+
 }

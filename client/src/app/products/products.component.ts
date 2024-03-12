@@ -14,6 +14,11 @@ export class ProductsComponent implements OnInit {
   products:[]
 
   ngOnInit(): void {
+    this.getProducts()
+  }
+
+  //method to get the products from the server
+  getProducts(){
     this.productServiceObj.getProducts().subscribe({
       next:res=>{
         console.log(res)
@@ -24,8 +29,6 @@ export class ProductsComponent implements OnInit {
       }
     })
   }
-
-
 
 
 }
