@@ -69,12 +69,10 @@ const buyerDetailsById = async(req,res)=>{
 //req handler for updating buyer requests
 const updateRequest = async(req,res)=>{
     let buyer = await Buyer.findOne({_id:req.body.buyerId})
-    console.log("buyer is ",buyer)
     if(buyer===null){
         res.send({message:"buyer does not exist"})
     }else{
         buyer.requests.push(req.body)
-        console.log("buyer after update is ",buyer)
         let updatedUser = await Buyer.findByIdAndUpdate(req.body.buyerId,buyer)
         res.send({message:"req added",payload:updatedUser})
     }
@@ -85,10 +83,7 @@ const deleteRequest = async(req,res)=>{
     let id = req.body.buyerId
     let index = req.body.index
     let buyer = await Buyer.findById(req.body.buyerId)
-    console.log("buyer details ",buyer)
-    console.log("index is ",req.body.index)
     buyer.requests.splice(index,1)
-    console.log("after delete ",buyer)
     let updated = await Buyer.findByIdAndUpdate(id,buyer)
     res.send({message:"deleted the data ",updated})
 }

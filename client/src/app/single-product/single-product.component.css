@@ -1,0 +1,16 @@
+button{
+    background-color: #33424f;
+    color: #ffffff;
+}
+button:hover{
+    background-color: #2b3843;
+    color: #ffffff;
+}
+button:active{
+    background-color: #33424f;
+    color: #ffffff;
+}
+button:disabled{
+    background-color: #33424f;
+    color: #ffffff;
+}

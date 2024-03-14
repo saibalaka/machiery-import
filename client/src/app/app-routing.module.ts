@@ -41,7 +41,7 @@ const routes: Routes = [
     canActivate:[routerGuard]
   },
   {
-    path:'importer-details',
+    path:'importer-details/:productId',
     component:ImporterDetailsComponent,
     canActivate:[routerGuard]
   },

@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { UserService } from '../services/user.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Importer } from '../models/user';
 
@@ -13,6 +13,7 @@ export class ImporterDetailsComponent {
 
   userServiceObj = inject(UserService);
   routerObj = inject(Router);
+  activatedRoute = inject(ActivatedRoute)
   fb:FormBuilder = inject(FormBuilder);
 
   importerDetails = this.fb.group({
@@ -44,29 +45,27 @@ export class ImporterDetailsComponent {
   get phone(){
     return this.importerDetails.get('phone')
   }
-  get address(){
-    return this.importerDetails.get('address')
-  }
   get city(){
-    return this.importerDetails.get('city')
+    return this.importerDetails.get('address.city')
   }
   get country(){
-    return this.importerDetails.get('country')
+    return this.importerDetails.get('address.country')
   }
   get pinCode(){
-    return this.importerDetails.get('pinCode')
+    return this.importerDetails.get('address.pinCode')
   }
 
 
   //to store data into the data base afte submition
   onDetailsFormSubmit(){
+    let productId = this.activatedRoute.snapshot.paramMap.get('productId');
     let importer = this.importerDetails.value;
     let address = {city:importer.address.city,country:importer.address.country,pinCode:importer.address.pinCode}
     let newImporter = new Importer(importer.companyName,importer.typeOfBuss,importer.name,importer.emailId,importer.phone,importer.quoteStatus,address)
     this.userServiceObj.createImporter(newImporter).subscribe({
       next:(res)=>{
         console.log("res ",res)
-        this.routerObj.navigate(['single-product'])
+        this.routerObj.navigate([`single-product/${productId}`])
       },
       error:(err)=>{
         console.log("Error in storing importer details ",err);

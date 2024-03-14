@@ -20,6 +20,7 @@ import { BuyerRequestsComponent } from './buyer-requests/buyer-requests.componen
 import { ImporterDetailsComponent } from './importer-details/importer-details.component';
 import { SingleProductComponent } from './single-product/single-product.component';
 import { authenticationInterceptor } from './authentication.interceptor';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { authenticationInterceptor } from './authentication.interceptor';
     SellerRequestsComponent,
     BuyerRequestsComponent,
     ImporterDetailsComponent,
-    SingleProductComponent
+    SingleProductComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

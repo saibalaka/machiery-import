@@ -88,7 +88,7 @@ export class SingleProductComponent implements OnInit {
     let productId = this.activatedRoute.snapshot.paramMap.get('id');
     let buyerReq = {buyerId:this.buyerDetails?._id,productId:productId,status:'pending',qty:Number(this.qty.value)}
     this.userServiceObj.updateRequests(buyerReq,'buyer')
-    this.routerObj.navigate(['importer-details'])
+    this.routerObj.navigate([`importer-details/${productId}`])
   }
 
   //update seller requests

@@ -71,12 +71,10 @@ const sellerDetailsById = async(req,res)=>{
 //req handler for updating seller requests
 const updateRequest = async(req,res)=>{
     let seller = await Seller.findOne({_id:req.body.sellerId})
-    console.log("seller is ",seller)
     if(seller===null){
         res.send({message:"seller does not exist"})
     }else{
         seller.requests.push(req.body)
-        console.log("seller after update is ",seller)
         let updatedUser = await Seller.findByIdAndUpdate(req.body.sellerId,seller)
         res.send({message:"req added",payload:updatedUser})
     }
@@ -87,10 +85,7 @@ const deleteRequest = async(req,res)=>{
     let id = req.body.sellerId
     let index = req.body.index
     let seller = await Seller.findById(req.body.sellerId)
-    console.log("seller details ",seller)
-    console.log("index is ",req.body.index)
     seller.requests.splice(index,1)
-    console.log("after delete ",seller)
     let updated = await Seller.findByIdAndUpdate(id,seller)
     res.send({message:"deleted the data ",updated})
 }
