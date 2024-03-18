@@ -6,7 +6,7 @@
         <th>Product Name</th>
         <th>Seller Name</th>
         <th>Qantity</th>
-        <th>Status</th>
+        <th colspan="2">Status</th>
       </tr>
     </thead>
     <tbody>
@@ -16,7 +16,10 @@
           <td>{{sellersData[index]?.username}}</td>
           <td>{{request?.qty}}</td>
           @if(request.status==='pending'){
-            <td>Waiting for response</td>
+            <td colspan="2">Waiting for response</td>
+          }@else if (request.status==='Rejected') {
+            <td>Sorry the seller was not intrested to send quotation</td>
+            <td><button class="btn btn-danger" (click)="remove(index,request?.buyerId)">Remove</button></td>
           }
           @else {
             <td><button class="btn btn-success" (click)="viewQutation(request)">View Quotation</button></td>

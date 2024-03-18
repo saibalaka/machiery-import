@@ -36,12 +36,8 @@
                 <input type="text" formControlName="manufacturer" id="manufacturer" class="form-control">
               </div>
               <div>
-                <label for="sellername" class="form-label">Sellername</label>
-                <input type="text" formControlName="sellername" id="sellername" class="form-control" value="{{sellername}}" [disabled]="true">
-              </div>
-              <div>
-                <button type="submit" class="btn px-3 m-2" (click)="onSubmitData()" *ngIf="showAdd" data-bs-dismiss="modal">Submit</button>
-                <button type="button" class="btn px-3 m-2" (click)="updateMachinery()" *ngIf="showUpdate" data-bs-dismiss="modal">Update</button>
+                <button type="submit" class="btn px-3 m-2" (click)="onSubmitData()" *ngIf="showAdd" data-bs-dismiss="modal" [disabled]="productDetails.invalid">Submit</button>
+                <button type="button" class="btn px-3 m-2" (click)="updateMachinery()" *ngIf="showUpdate" data-bs-dismiss="modal" [disabled]="productDetails.invalid">Update</button>
               </div>
             </form>
           </div>

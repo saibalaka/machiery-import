@@ -53,6 +53,7 @@ export class SellerRequestsComponent implements OnInit{
     this.userServiceObj.updateStatus(statusObj,'buyer').subscribe({
       next:res=>{
         console.log("after sending res ",res)
+        this.getRequests()
       },
       error:err=>{
         console.log("error while sending response ",err)

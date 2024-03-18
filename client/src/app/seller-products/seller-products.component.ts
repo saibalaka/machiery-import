@@ -24,13 +24,13 @@ export class SellerProductsComponent implements OnInit {
 
 
   productDetails = this.fb.group({
-    title:[''],
-    image:[''],
-    discription:[''],
-    cost:<number><unknown>[''],
-    madein:[''],
-    manufacturer:[''],
-    sellername:['',Validators.required]
+    title:['',Validators.required],
+    image:['',Validators.required],
+    discription:['',Validators.required],
+    cost:<number><unknown>['',Validators.required],
+    madein:['',Validators.required],
+    manufacturer:['',Validators.required],
+    sellername:[`${this.sellername}`,Validators.required]
   })
   
   //constroctor to load the latest data from the service
@@ -79,6 +79,7 @@ export class SellerProductsComponent implements OnInit {
     this.productServiceObj.createProduct(newProduct).subscribe({
       next:res=>{
         console.log('creating',res)
+        this.getProductsOfSeller()
       },
       error:err=>{
         console.log("error creating new product ",err)
@@ -95,6 +96,7 @@ export class SellerProductsComponent implements OnInit {
     this.productServiceObj.updateProduct(newProduct).subscribe({
       next:res=>{
         console.log("updating ",res)
+        this.getProductsOfSeller()
       },
       error:err=>{
         console.log("error updating the product ",err)
