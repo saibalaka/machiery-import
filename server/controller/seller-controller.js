@@ -40,7 +40,6 @@ const sellerLogin = async(req,res)=>{
             let signedToken = jwt.sign({username:userOfDB.username},process.env.SECRET_KEY,{expiresIn:160})
             //send res
             res.status(200).send({message:"Login success",token:signedToken,payload:userOfDB})
-            console.log("user is ",userOfDB)
         }
         //else passwords not matched
         else{

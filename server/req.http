@@ -11,7 +11,7 @@ Content-Type: application/json
 
 //user login 
 ###
-post http://localhost:4000/seller-api/seller-login
+post http://localhost:4000/buyer-api/buyer-login
 Content-Type: application/json
 
 {

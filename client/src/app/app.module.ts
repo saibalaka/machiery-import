@@ -21,6 +21,7 @@ import { ImporterDetailsComponent } from './importer-details/importer-details.co
 import { SingleProductComponent } from './single-product/single-product.component';
 import { authenticationInterceptor } from './authentication.interceptor';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { TestComponent } from './test/test.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     BuyerRequestsComponent,
     ImporterDetailsComponent,
     SingleProductComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
